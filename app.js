@@ -1,24 +1,28 @@
 const express = require('express');
 const morgan = require('morgan')
+const bodyparser = require("body-parser");
+const path = require('path');
+const dotenv = require('dotenv');
+
+const connectDB = require('./server/database/connection');
 
 const app = express();
 
-app.set('view engine', 'ejs')
-
-app.listen(3000);
+dotenv.config( { path : 'config.env'} )
+const PORT = process.env.PORT || 3000
 
 app.use(morgan('tiny'));
 
+connectDB();
+
+app.use(bodyparser.urlencoded({ extended : true}))
+
+app.set('view engine', 'ejs')
+
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-    res.render('index',{ title: 'ABNB Insurance'})
-  });
+app.use('/', require('./server/routes/router'))
 
-  app.get('/addcustomer', (req, res) => {
-    res.render('addcustomer',{ title: 'ABNB Insurance'})
-  });
+app.listen(PORT, ()=> { console.log(`Server is running on http://localhost:${PORT}`)});
 
-app.use((req, res) => {
-  res.status(404).render('404', { title: '404' });
-});
+

@@ -85,6 +85,58 @@ a {
     margin: 2em 0;
 }
 
+table{
+    border-spacing: 0px;
+    width: 100%;
+}
+
+.table td, .table th{
+    padding: .75em;
+    vertical-align: top;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.table td > a.btn{
+    padding: .3em 1em;
+    font-size: 1.1em;
+    margin: 0 .2em;
+}
+
+.table tr:hover{
+    background-color:#06d6a0 ;
+}
+
+.table tr:hover td > a{
+    box-shadow: none;
+}
+
+.table .thead-dark th{
+    color: #fff;
+    background-color: var(--dark) ;
+    border-color: #32383e;
+}
+
+@media only screen and (max-width: 1024px){
+    table, thead, tbody, th, td, tr{
+        display: block;
+    }
+
+    thead tr{
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr { border: 1px solid var(--border);}
+
+    td{
+        border: none;
+        position: relative;
+    }
+
+}
+
 .form-title{
     margin-top: 2em;
 }
@@ -119,8 +171,8 @@ a {
     margin: 1em 2em;
 }
 
-#update_user .form-group .btn,
-#add_user .form-group .btn{
+#update_customer .form-group .btn,
+#add_customer .form-group .btn{
     width: 100%;
     padding: .9em 1em;
     background-color:#16db93; 
@@ -132,8 +184,8 @@ a {
     margin: .5em 0;
 }
 
-#update_user .form-group .btn:hover,
-#add_user .form-group .btn:hover{
+#update_customer .form-group .btn:hover,
+#add_customer .form-group .btn:hover{
     background-color: var(--dark);
     color: var(--border);
 }
